@@ -45,16 +45,20 @@ public class CommonMathUtil {
     }
 
     /**
+     * 参数是Double 会有精度问题
+     * BigDecimal也需要设置小数点后保留位数
+     *
      * 数值转百分比字符串
      *
      * @param val
      * @return
      */
-    public static String convert2Percent(Double val) {
+
+    public static String convert2Percent(BigDecimal val) {
         if (val == null) {
             return "0%";
         }
-        return (int) (val * 100) + "%";
+        return  (val.multiply(BigDecimal.valueOf(100)).setScale(2,BigDecimal.ROUND_UP)) + "%";
     }
 
 }

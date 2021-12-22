@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-public class Double2Point extends JsonSerializer<Double> {
+public class    Double2Point extends JsonSerializer<Double> {
 
 	@Override
 	public void serialize(Double value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

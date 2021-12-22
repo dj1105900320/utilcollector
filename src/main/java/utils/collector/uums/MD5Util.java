@@ -3,8 +3,9 @@ package utils.collector.uums;
 import java.security.MessageDigest;
 
 /**
+ * 可用
+ *
  * 采用MD5加密解密
- * 
  */
 public class MD5Util {
 	
@@ -54,11 +55,11 @@ public class MD5Util {
 
 	// 测试主函数
 	public static void main(String[] args) {
-//		String s = new String("123456");
-//		System.err.println("原始：" + s);
-//		System.err.println("MD5后：" + string2MD5(s));
-//		System.err.println("加密的：" + convertMD5(s));
-//		System.err.println("解密的：" + convertMD5(convertMD5(s)));
+		String s = new String("123456");
+		System.err.println("原始：" + s);
+		System.err.println("MD5后：" + string2MD5(s));
+		System.err.println("加密的：" + convertMD5(s));
+		System.err.println("解密的：" + convertMD5(convertMD5(s)));
 	}
 	
 }

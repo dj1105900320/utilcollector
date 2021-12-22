@@ -9,7 +9,7 @@ public class CRC16Util {
 
     /**
      * 实现CRC16_XMODEM
-     * @param buffer
+     * @param bytes
      * @return
      */
     public static int CRC16_XMODEM(byte[] bytes){

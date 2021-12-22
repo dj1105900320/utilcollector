@@ -1,6 +1,5 @@
 package utils.collector.vehiclestatuscheck;
 
-import com.xueliman.iov.vc.domain.EmailData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 /**
+ * 没啥用 基本用不到
+ *
  * @author deng jie
  * @date 2021/7/16 16:46
  * @description 发送邮件工具类
