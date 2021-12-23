@@ -8,9 +8,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * @author lk
- * @date 2021/10/15
+ * 可用
  * 文件转化
+ * @author deng jie
+ * @date 2021/10/15
  */
 public class MultipartFileToFile {
 

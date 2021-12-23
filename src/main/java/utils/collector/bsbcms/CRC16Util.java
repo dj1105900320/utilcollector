@@ -1,7 +1,9 @@
 package utils.collector.bsbcms;
 
 /**
- * @author lk
+ * 可用
+ *
+ * @author deng jie
  * @date 2021/10/15
  * 文件crc16 校验
  */

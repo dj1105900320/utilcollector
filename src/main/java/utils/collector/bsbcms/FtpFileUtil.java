@@ -13,9 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author lk
- * @date 2021/10/14
- * ftp服务工具类
+ * 可用
+ *
+ * @author   deng jie
+ * @date     2021/12/23 18:51
  */
 @Slf4j
 public class FtpFileUtil {
