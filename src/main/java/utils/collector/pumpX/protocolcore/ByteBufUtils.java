@@ -1,6 +1,8 @@
 package utils.collector.pumpX.protocolcore;
 
+import cn.hutool.core.util.HexUtil;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 
 /**
  * Netty ByteBuf工具类
@@ -9,6 +11,20 @@ import io.netty.buffer.ByteBuf;
  */
 public class ByteBufUtils {
 
+    public static void main(String[] args) {
+        ByteBuf buf = Unpooled.buffer();
+        buf.writeShort(5);
+        buf.writeByte(3);
+        buf.writeInt(4);
+        int num = readInt(buf, 2);
+        int num2 = readInt(buf,1);
+        int num3 = readInt(buf,4);
+        System.out.println(num);
+        System.out.println(num2);
+        System.out.println(num3);
+    }
+
+    // 读取ByteBuf中指定字节长度的数字
     public static int readInt(ByteBuf input, int length) {
         int value;
         switch (length) {
@@ -30,6 +46,7 @@ public class ByteBufUtils {
         return value;
     }
 
+    // 向ByteBuf中写入指定长度的int值
     public static void writeInt(ByteBuf output, int length, int value) {
         switch (length) {
             case 1:
@@ -49,6 +66,7 @@ public class ByteBufUtils {
         }
     }
 
+    // 从指定位置获取指定长度的int值
     public static int getInt(ByteBuf input, int index, int length) {
         int value;
         switch (length) {
