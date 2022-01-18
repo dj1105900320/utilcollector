@@ -8,7 +8,7 @@ package utils.collector.bsbcms;
  * 文件crc16 校验
  */
 public class CRC16Util {
-
+    // 测试gitlab
     /**
      * 实现CRC16_XMODEM
      * @param bytes
