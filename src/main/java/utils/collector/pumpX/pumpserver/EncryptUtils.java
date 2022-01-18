@@ -1,4 +1,4 @@
-package utils.collector.pumpX.pump;
+package utils.collector.pumpX.pumpserver;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;

@@ -1,13 +1,15 @@
 package utils.collector.nettytopump;
 
+import cn.hutool.core.io.checksum.CRC16;
 import cn.hutool.core.util.HexUtil;
 import utils.collector.bsbcms.CRC16Util;
 
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author chenyang
+ * 可用
  *
+ * @author deng jie
  */
 public class Crc {
 

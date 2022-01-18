@@ -46,8 +46,9 @@ public class DateUtil {
 	
 	public static Date getDate(Date date, int i) {
 
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -59,8 +60,9 @@ public class DateUtil {
 	
 	public static Date getDate(Date date, int field, int i) {
 
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -78,8 +80,9 @@ public class DateUtil {
 	
 	public static Date getDateByHour(Date date, int hour) {
 
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -91,8 +94,9 @@ public class DateUtil {
 
 	
 	public static int getDay(Date date1, Date date2) {
-		if (date1 == null || date2 == null)
-			return 0;
+			if (date1 == null || date2 == null) {
+				return 0;
+			}
 
 		date1 = getDate(date1);
 		date2 = getDate(date2);
@@ -123,8 +127,9 @@ public class DateUtil {
 			
 			int week = weeks[m];
 			
-			if (isMatchWeek(date, week))
+			if (isMatchWeek(date, week)) {
 				return true;
+			}
 		}
 		
 		
@@ -132,14 +137,16 @@ public class DateUtil {
 	}
 
 	public static java.sql.Date getSqlDate(Date date) {
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 		return new java.sql.Date(date.getTime());
 	}
 
 	public static Date getDate(Date date) {
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 		return getDate(DateUtil.dateToString(date));
 
 	}
@@ -150,16 +157,18 @@ public class DateUtil {
 	}
 
 	public static Date getDefaultDateTime(Date date) {
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 		String str = dateToString(date) + " 12:00";
 
 		return stringToDatetime(str, "yyyy-MM-dd HH:mm");
 	}
 
 	public static List<Date> getDates(Date date1, Date date2) {
-		if (date1 == null || date2 == null)
+		if (date1 == null || date2 == null) {
 			return new ArrayList<Date>();
+		}
 
 		int day = getDay(date1, date2);
 
@@ -173,16 +182,18 @@ public class DateUtil {
 	}
 
 	public static String dateToString(Date date) {
-		if (date == null)
+		if (date == null) {
 			return "";
+		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdf.format(date);
 	}
 
 	public static String datetimeToString(Date date) {
-		if (date == null)
+		if (date == null) {
 			return "";
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdf.format(date);
 	}
@@ -196,8 +207,9 @@ public class DateUtil {
 	}
 
 	public static Date toDateByFormat(String str, String format) {
-		if (str == null || str.equals(""))
+		if (str == null || str.equals("")) {
 			return null;
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		try {
 			return sdf.parse(str);
@@ -208,8 +220,9 @@ public class DateUtil {
 	}
 
 	public static Date stringToDate(String str) {
-		if (str == null || str.equals(""))
+		if (str == null || str.equals("")) {
 			return null;
+		}
 		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 		try {
@@ -221,8 +234,9 @@ public class DateUtil {
 	}
 
 	public static Date stringToDateTime(String str) {
-		if (str == null || str.equals(""))
+		if (str == null || str.equals("")) {
 			return null;
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			return sdf.parse(str);
@@ -233,8 +247,9 @@ public class DateUtil {
 	}
 
 	public static Date stringToDatetime(String str, String format) {
-		if (str == null || str.equals(""))
+		if (str == null || str.equals("")) {
 			return null;
+		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		try {
@@ -246,8 +261,9 @@ public class DateUtil {
 	}
 
 	public static Date getDate(String str) {
-		if (str == null || str.equals("") || str.length() < 8)
+		if (str == null || str.equals("") || str.length() < 8) {
 			return null;
+		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE);
 		try {

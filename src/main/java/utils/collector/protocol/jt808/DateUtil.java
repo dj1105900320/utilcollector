@@ -36,8 +36,9 @@ public class DateUtil {
 	
 	public static Date getDate(Date date, int i) {
 
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -49,8 +50,9 @@ public class DateUtil {
 	
 	public static Date getDate(Date date, int field, int i) {
 
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -68,8 +70,9 @@ public class DateUtil {
 	
 	public static Date getDateByHour(Date date, int hour) {
 
-		if (date == null)
+		if (date == null) {
 			return null;
+		}
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -81,8 +84,9 @@ public class DateUtil {
 
 	
 	public static int getDay(Date date1, Date date2) {
-		if (date1 == null || date2 == null)
+		if (date1 == null || date2 == null) {
 			return 0;
+		}
 
 		date1 = getDate(date1);
 		date2 = getDate(date2);
@@ -113,8 +117,9 @@ public class DateUtil {
 			
 			int week = weeks[m];
 			
-			if (isMatchWeek(date, week))
+			if (isMatchWeek(date, week)) {
 				return true;
+			}
 		}
 		
 		

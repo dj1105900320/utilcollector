@@ -28,20 +28,24 @@ public class ToStringBuilder {
     public static String toString(StringBuilder sb, Object object, boolean superclass, String... ignores) {
         Class<?> typeClass = object.getClass();
         Builder[] builders = getBuilders(typeClass, ignores);
-        if (sb == null)
+        if (sb == null) {
             sb = new StringBuilder(builders.length * 10);
+        }
 
         String name = typeClass.getName();
         sb.append(name, name.lastIndexOf('.') + 1, name.length());
         sb.append('{');
         try {
             if (superclass) {
-                for (Builder builder : builders)
+                for (Builder builder : builders) {
                     builder.append(sb, object);
+                }
             } else {
-                for (Builder builder : builders)
-                    if (!builder.superclass)
+                for (Builder builder : builders) {
+                    if (!builder.superclass) {
                         builder.append(sb, object);
+                    }
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -61,8 +65,9 @@ public class ToStringBuilder {
                 if ((mName.startsWith("get") || mName.startsWith("is")) &&
                         !"class".equals(name) &&
                         !contains(ignores, name) &&
-                        method.getParameterCount() == 0 && !method.isAnnotationPresent(Transient.class))
+                        method.getParameterCount() == 0 && !method.isAnnotationPresent(Transient.class)) {
                     result.add(new Builder(name, method, !typeClass.equals(method.getDeclaringClass())));
+                }
             }
 
             Builder[] temp = new Builder[result.size()];
@@ -73,11 +78,13 @@ public class ToStringBuilder {
     }
 
     private static boolean contains(Object[] array, Object obj) {
-        if (array == null || array.length == 0 || obj == null)
+        if (array == null || array.length == 0 || obj == null) {
             return false;
+        }
         for (Object t : array) {
-            if (obj.equals(t))
+            if (obj.equals(t)) {
                 return true;
+            }
         }
         return false;
     }
@@ -100,10 +107,12 @@ public class ToStringBuilder {
             int length = Array.getLength(array);
             boolean tooLong = length > 140;
             length = tooLong ? 140 : length;
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++) {
                 sb.append(Array.get(array, i)).append(',');
-            if (tooLong)
+            }
+            if (tooLong) {
                 sb.append("......");
+            }
             sb.setCharAt(sb.length() - 1, ']');
         };
 
@@ -135,11 +144,13 @@ public class ToStringBuilder {
         @Override
         public int compareTo(Builder that) {
             Class<?> thatType = that.method.getReturnType();
-            if (Iterable.class.isAssignableFrom(thatType) || thatType.isArray())
+            if (Iterable.class.isAssignableFrom(thatType) || thatType.isArray()) {
                 return -1;
+            }
             Class<?> thisType = this.method.getReturnType();
-            if (Iterable.class.isAssignableFrom(thisType) || thisType.isArray())
+            if (Iterable.class.isAssignableFrom(thisType) || thisType.isArray()) {
                 return 1;
+            }
             return 0;
         }
     }

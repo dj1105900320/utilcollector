@@ -1,219 +1,250 @@
-//package utils.collector.protocol.jt808;
-//
+package utils.collector.protocol.jt808;
+
 //import com.xueliman.iov.protocol.meta.BitConverter;
-//
-//import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-//
-///**
-// * 各基础类型与byte之间的转换
-// * @author shanl
-// *
-// */
-//public class Utility {
-//
-//	/**
-//	 * 将short转成byte[2]
-//	 * @param a
-//	 * @return
-//	 */
-//	public static byte[] short2Byte(short a){
-//		byte[] b = new byte[2];
-//
-//		b[0] = (byte) (a >> 8);
-//		b[1] = (byte) (a);
-//
-//		return b;
-//	}
-//
-//	/**
-//	 * 将short转成byte[2]
-//	 * @param a
-//	 * @param b
-//	 * @param offset b中的偏移量
-//	 */
-//	public static void short2Byte(short a, byte[] b, int offset){
-//		b[offset] = (byte) (a >> 8);
-//		b[offset+1] = (byte) (a);
-//	}
-//
-//	/**
-//	 * 将byte[2]转换成short
-//	 * @param b
-//	 * @return
-//	 */
-//	public static short byte2Short(byte[] b){
-//		return (short) (((b[0] & 0xff) << 8) | (b[1] & 0xff));
-//	}
-//
-//	/**
-//	 * 将byte[2]转换成short
-//	 * @param b
-//	 * @param offset
-//	 * @return
-//	 */
-//	public static short byte2Short(byte[] b, int offset){
-//		return (short) (((b[offset] & 0xff) << 8) | (b[offset+1] & 0xff));
-//	}
-//
-//	/**
-//	 * long转byte[8]
-//	 *
-//	 * @param a
-//	 * @param b
-//	 * @param offset
-//	 *            b的偏移量
-//	 */
-//	public static void long2Byte(long a, byte[] b, int offset) {
-//		b[offset + 0] = (byte) (a >> 56);
-//		b[offset + 1] = (byte) (a >> 48);
-//		b[offset + 2] = (byte) (a >> 40);
-//		b[offset + 3] = (byte) (a >> 32);
-//
-//		b[offset + 4] = (byte) (a >> 24);
-//		b[offset + 5] = (byte) (a >> 16);
-//		b[offset + 6] = (byte) (a >> 8);
-//		b[offset + 7] = (byte) (a);
-//	}
-//
-//	/**
-//	 * byte[8]转long
-//	 *
-//	 * @param b
-//	 * @param offset
-//	 *            b的偏移量
-//	 * @return
-//	 */
-//	public static long byte2Long(byte[] b, int offset) {
-//		 return ((((long) b[offset + 0] & 0xff) << 56)
-//		 | (((long) b[offset + 1] & 0xff) << 48)
-//		 | (((long) b[offset + 2] & 0xff) << 40)
-//		 | (((long) b[offset + 3] & 0xff) << 32)
-//
-//		 | (((long) b[offset + 4] & 0xff) << 24)
-//		 | (((long) b[offset + 5] & 0xff) << 16)
-//		 | (((long) b[offset + 6] & 0xff) << 8)
-//		 | (((long) b[offset + 7] & 0xff) << 0));
-//	}
-//
-//	/**
-//	 * byte[8]转long
-//	 *
-//	 * @param b
-//	 * @return
-//	 */
-//	public static long byte2Long(byte[] b) {
-//		 return
-//		 ((b[0]&0xff)<<56)|
-//		 ((b[1]&0xff)<<48)|
-//		 ((b[2]&0xff)<<40)|
-//		 ((b[3]&0xff)<<32)|
-//
-//		 ((b[4]&0xff)<<24)|
-//		 ((b[5]&0xff)<<16)|
-//		 ((b[6]&0xff)<<8)|
-//		 (b[7]&0xff);
-//	}
-//
-//	/**
-//	 * long转byte[8]
-//	 *
-//	 * @param a
-//	 * @return
-//	 */
-//	public static byte[] long2Byte(long a) {
-//		byte[] b = new byte[4 * 2];
-//
-//		b[0] = (byte) (a >> 56);
-//		b[1] = (byte) (a >> 48);
-//		b[2] = (byte) (a >> 40);
-//		b[3] = (byte) (a >> 32);
-//
-//		b[4] = (byte) (a >> 24);
-//		b[5] = (byte) (a >> 16);
-//		b[6] = (byte) (a >> 8);
-//		b[7] = (byte) (a >> 0);
-//
-//		return b;
-//	}
-//
-//	/**
-//	 * byte数组转int
-//	 *
-//	 * @param b
-//	 * @return
-//	 */
-//	public static int byte2Int(byte[] b) {
-//		return ((b[0] & 0xff) << 24) | ((b[1] & 0xff) << 16)
-//				| ((b[2] & 0xff) << 8) | (b[3] & 0xff);
-//	}
-//
-//	/**
-//	 * byte数组转int
-//	 *
-//	 * @param b
-//	 * @param offset
-//	 * @return
-//	 */
-//	public static int byte2Int(byte[] b, int offset) {
-//		return ((b[offset++] & 0xff) << 24) | ((b[offset++] & 0xff) << 16)
-//				| ((b[offset++] & 0xff) << 8) | (b[offset++] & 0xff);
-//	}
-//
-//	/**
-//	 * int转byte数组
-//	 *
-//	 * @param a
-//	 * @return
-//	 */
-//	public static byte[] int2Byte(int a) {
-//		byte[] b = new byte[4];
-//		b[0] = (byte) (a >> 24);
-//		b[1] = (byte) (a >> 16);
-//		b[2] = (byte) (a >> 8);
-//		b[3] = (byte) (a);
-//
-//		return b;
-//	}
-//
-//	/**
-//	 * int转byte数组
-//	 *
-//	 * @param a
-//	 * @param b
-//	 * @param offset
-//	 * @return
-//	 */
-//	public static void int2Byte(int a, byte[] b, int offset) {
-//		b[offset++] = (byte) (a >> 24);
-//		b[offset++] = (byte) (a >> 16);
-//		b[offset++] = (byte) (a >> 8);
-//		b[offset++] = (byte) (a);
-//	}
-//
-//	/**
-//	 * 将byte数组转换为字符串形式表示的十六进制数方便查看
-//	 */
-//	public static String bytesToString(byte[] bytes) {
-//		StringBuffer sBuffer = new StringBuffer();
-//		for (int i = 0; i < bytes.length; i++) {
-//			String s = Integer.toHexString(bytes[i] & 0xff);
-//			if (s.length() < 2)
-//				sBuffer.append('0');
-//			sBuffer.append(s + " ");
-//		}
-//		return sBuffer.toString();
-//	}
-//
-//
-//	/**
-//	 * 将byte数组转换为字符串形式表示的十六进制数方便查看
-//	 */
-//	public static String byteToString(byte b) {
-//		return String.format("%02x", b);
-//	}
-//
+
+import cn.hutool.core.util.ByteUtil;
+import cn.hutool.core.util.HexUtil;
+
+import java.nio.ByteOrder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * 各基础类型与byte之间的转换
+ * @author shanl
+ *
+ */
+public class Utility {
+
+    public static void main(String[] args) {
+//        short s = 2;
+//        byte[] b = short2Byte(s);
+//        System.out.println(HexUtil.decodeHex(new String(b)));
+
+        long l = 2000;
+        byte[] b = long2Byte(l);
+
+		long s = ByteUtil.bytesToLong(b, ByteOrder.BIG_ENDIAN);
+//		System.out.println(s);
+
+		int i = 4;
+		byte[] v = ByteUtil.intToBytes(4);
+		int o = ByteUtil.bytesToInt(v,ByteOrder.nativeOrder());
+		System.out.println(o);
+    }
+
+    public static byte[] long2Bytes(long num) {
+        byte[] byteNum = new byte[8];
+        for (int ix = 0; ix < 8; ++ix) {
+            int offset = 64 - (ix + 1) * 8;
+            byteNum[ix] = (byte) ((num >> offset) & 0xff);
+        }
+        return byteNum;
+    }
+
+	/**
+	 * 将short转成byte[2]
+	 * @param a
+	 * @return
+	 */
+	public static byte[] short2Byte(short a){
+		byte[] b = new byte[2];
+
+		b[0] = (byte) (a >> 8);
+		b[1] = (byte) (a);
+
+		return b;
+	}
+
+	/**
+	 * 将short转成byte[2]
+	 * @param a
+	 * @param b
+	 * @param offset b中的偏移量
+	 */
+	public static void short2Byte(short a, byte[] b, int offset){
+		b[offset] = (byte) (a >> 8);
+		b[offset+1] = (byte) (a);
+	}
+
+	/**
+	 * 将byte[2]转换成short
+	 * @param b
+	 * @return
+	 */
+	public static short byte2Short(byte[] b){
+		return (short) (((b[0] & 0xff) << 8) | (b[1] & 0xff));
+	}
+
+	/**
+	 * 将byte[2]转换成short
+	 * @param b
+	 * @param offset
+	 * @return
+	 */
+	public static short byte2Short(byte[] b, int offset){
+		return (short) (((b[offset] & 0xff) << 8) | (b[offset+1] & 0xff));
+	}
+
+	/**
+	 * long转byte[8]
+	 *
+	 * @param a
+	 * @param b
+	 * @param offset
+	 *            b的偏移量
+	 */
+	public static void long2Byte(long a, byte[] b, int offset) {
+		b[offset + 0] = (byte) (a >> 56);
+		b[offset + 1] = (byte) (a >> 48);
+		b[offset + 2] = (byte) (a >> 40);
+		b[offset + 3] = (byte) (a >> 32);
+
+		b[offset + 4] = (byte) (a >> 24);
+		b[offset + 5] = (byte) (a >> 16);
+		b[offset + 6] = (byte) (a >> 8);
+		b[offset + 7] = (byte) (a);
+	}
+
+	/**
+	 * byte[8]转long
+	 *
+	 * @param b
+	 * @param offset
+	 *            b的偏移量
+	 * @return
+	 */
+	public static long byte2Long(byte[] b, int offset) {
+		 return ((((long) b[offset + 0] & 0xff) << 56)
+		 | (((long) b[offset + 1] & 0xff) << 48)
+		 | (((long) b[offset + 2] & 0xff) << 40)
+		 | (((long) b[offset + 3] & 0xff) << 32)
+
+		 | (((long) b[offset + 4] & 0xff) << 24)
+		 | (((long) b[offset + 5] & 0xff) << 16)
+		 | (((long) b[offset + 6] & 0xff) << 8)
+		 | (((long) b[offset + 7] & 0xff) << 0));
+	}
+
+	/**
+	 * byte[8]转long
+	 *
+	 * @param b
+	 * @return
+	 */
+	public static long byte2Long(byte[] b) {
+		 return
+		 ((b[0]&0xff)<<56)|
+		 ((b[1]&0xff)<<48)|
+		 ((b[2]&0xff)<<40)|
+		 ((b[3]&0xff)<<32)|
+
+		 ((b[4]&0xff)<<24)|
+		 ((b[5]&0xff)<<16)|
+		 ((b[6]&0xff)<<8)|
+		 (b[7]&0xff);
+	}
+
+	/**
+	 * long转byte[8]
+	 *
+	 * @param a
+	 * @return
+	 */
+	public static byte[] long2Byte(long a) {
+		byte[] b = new byte[4 * 2];
+
+		b[0] = (byte) (a >> 56);
+		b[1] = (byte) (a >> 48);
+		b[2] = (byte) (a >> 40);
+		b[3] = (byte) (a >> 32);
+
+		b[4] = (byte) (a >> 24);
+		b[5] = (byte) (a >> 16);
+		b[6] = (byte) (a >> 8);
+		b[7] = (byte) (a >> 0);
+
+		return b;
+	}
+
+	/**
+	 * byte数组转int
+	 *
+	 * @param b
+	 * @return
+	 */
+	public static int byte2Int(byte[] b) {
+		return ((b[0] & 0xff) << 24) | ((b[1] & 0xff) << 16)
+				| ((b[2] & 0xff) << 8) | (b[3] & 0xff);
+	}
+
+	/**
+	 * byte数组转int
+	 *
+	 * @param b
+	 * @param offset
+	 * @return
+	 */
+	public static int byte2Int(byte[] b, int offset) {
+		return ((b[offset++] & 0xff) << 24) | ((b[offset++] & 0xff) << 16)
+				| ((b[offset++] & 0xff) << 8) | (b[offset++] & 0xff);
+	}
+
+	/**
+	 * int转byte数组
+	 *
+	 * @param a
+	 * @return
+	 */
+	public static byte[] int2Byte(int a) {
+		byte[] b = new byte[4];
+		b[0] = (byte) (a >> 24);
+		b[1] = (byte) (a >> 16);
+		b[2] = (byte) (a >> 8);
+		b[3] = (byte) (a);
+
+		return b;
+	}
+
+	/**
+	 * int转byte数组
+	 *
+	 * @param a
+	 * @param b
+	 * @param offset
+	 * @return
+	 */
+	public static void int2Byte(int a, byte[] b, int offset) {
+		b[offset++] = (byte) (a >> 24);
+		b[offset++] = (byte) (a >> 16);
+		b[offset++] = (byte) (a >> 8);
+		b[offset++] = (byte) (a);
+	}
+
+	/**
+	 * 将byte数组转换为字符串形式表示的十六进制数方便查看
+	 */
+	public static String bytesToString(byte[] bytes) {
+		StringBuffer sBuffer = new StringBuffer();
+		for (int i = 0; i < bytes.length; i++) {
+			String s = Integer.toHexString(bytes[i] & 0xff);
+			if (s.length() < 2) {
+                sBuffer.append('0');
+            }
+			sBuffer.append(s + " ");
+		}
+		return sBuffer.toString();
+	}
+
+
+	/**
+	 * 将byte数组转换为字符串形式表示的十六进制数方便查看
+	 */
+	public static String byteToString(byte b) {
+		return String.format("%02x", b);
+	}
+
 //	public static void main(String [] args){
 //		Date data=new Date();
 //		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -248,4 +279,4 @@
 //		System.out.println(item);
 //
 //	}
-//}
+}

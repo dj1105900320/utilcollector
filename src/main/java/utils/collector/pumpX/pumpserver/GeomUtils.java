@@ -1,4 +1,4 @@
-package utils.collector.pumpX.pump;
+package utils.collector.pumpX.pumpserver;
 
 /**
  * @author ：fengliang
